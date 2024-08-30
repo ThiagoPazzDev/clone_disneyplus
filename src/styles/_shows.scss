@@ -30,12 +30,14 @@
         display: none;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 24px;
+        
 
         &--is-active{
             display: grid;
         }
 
         &__item{
+            cursor: pointer;
             img{
                 max-width: 100%;
                 border-radius: 4px;

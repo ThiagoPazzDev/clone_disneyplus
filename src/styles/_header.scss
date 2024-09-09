@@ -23,12 +23,20 @@
         display: flex;
         justify-content: space-between;
         padding: 8px 36px;
+
+        @media(max-width: 768px){
+            padding: 0 12 0 20;
+        }
     }
     &__logo{
         max-width: 100%;
         width: 80px;
         margin: 5px;
         transition: opacity .5s ease;
+
+        @media(max-width: 768px){
+            max-width: 64px;
+        }
     }
     &__links{
         display: flex;
@@ -41,6 +49,12 @@
     .button{
         height: 50px;
         
+        @media(max-width:768px){
+            font-size: 13px;
+            padding: 8px 11px;
+            height: 40px;
+            letter-spacing: 0;
+        }
     }
 }
 

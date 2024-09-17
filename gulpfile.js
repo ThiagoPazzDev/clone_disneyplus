@@ -1,23 +1,30 @@
-const gulp = require('gulp')
-const sass = require('gulp-sass')(require('sass'))
-const uglify = require('gulp-uglify')
+const gulp = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
 
-function scripts(){
+function scripts() {
     return gulp.src('./src/scripts/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist/js'));
 }
 
+function images() {
+    return gulp.src('./src/images/**/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./dist/images'));
+}
 
-function styles(){
+function styles() {
     return gulp.src('./src/styles/*.scss') 
-        .pipe(sass({outputStyle: 'compressed'}))
-        .pipe(gulp.dest('./dist/css'))
+        .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(gulp.dest('./dist/css'));
 }
 
-exports.default = gulp.parallel(styles, scripts)
+exports.default = gulp.parallel(styles, scripts, images);
 
-exports.watch = function(){
-    gulp.watch('./src/styles/*.scss', gulp.parallel(styles))
-    gulp.watch('./src/styles/*.js', gulp.parallel(scripts))
-}
+exports.watch = function() {
+    gulp.watch('./src/styles/*.scss', gulp.parallel(styles));
+    gulp.watch('./src/scripts/*.js', gulp.parallel(scripts));
+    gulp.watch('./src/images/**/*', gulp.parallel(images));
+};
